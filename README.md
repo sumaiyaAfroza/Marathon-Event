@@ -118,10 +118,7 @@ A comprehensive full-stack web application designed to streamline marathon event
    npm run dev
    ```
 
-5. **Access the Application**
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:5000
-   - API Documentation: http://localhost:5000/api/docs
+
 
 ## 📱 Application Features
 
@@ -181,88 +178,7 @@ A comprehensive full-stack web application designed to streamline marathon event
 }
 ```
 
-### Marathon Model
-```javascript
-{
-  title: String,
-  startRegistrationDate: Date,
-  endRegistrationDate: Date,
-  marathonStartDate: Date,
-  location: String,
-  runningDistance: String,
-  description: String,
-  marathonImage: String,
-  createdBy: ObjectId (User),
-  totalRegistrationCount: Number,
-  createdAt: Date,
-  updatedAt: Date
-}
-```
 
-### Registration Model
-```javascript
-{
-  marathonId: ObjectId (Marathon),
-  userId: ObjectId (User),
-  firstName: String,
-  lastName: String,
-  email: String,
-  contactNumber: String,
-  additionalInfo: String,
-  registrationDate: Date
-}
-```
-
-## 🌐 API Endpoints
-
-### Authentication Routes
-```
-POST /api/auth/register     - User registration
-POST /api/auth/login        - User login
-POST /api/auth/create-jwt   - Create JWT token
-GET  /api/auth/verify       - Verify JWT token
-POST /api/auth/logout       - User logout
-```
-
-### Marathon Routes
-```
-GET    /api/marathons              - Get all marathons (with sorting)
-GET    /api/marathons/:id          - Get specific marathon
-POST   /api/marathons              - Create new marathon
-PUT    /api/marathons/:id          - Update marathon
-DELETE /api/marathons/:id          - Delete marathon
-GET    /api/marathons/user/:userId - Get marathons by user
-```
-
-### Registration Routes
-```
-GET    /api/registrations/user/:userId    - Get user registrations
-GET    /api/registrations/search          - Search registrations
-POST   /api/registrations                 - Create registration
-PUT    /api/registrations/:id             - Update registration
-DELETE /api/registrations/:id             - Delete registration
-```
-
-## 🧪 Testing
-
-### Frontend Testing
-```bash
-cd client
-npm run test
-npm run test:coverage
-```
-
-### Backend Testing
-```bash
-cd server
-npm run test
-npm run test:watch
-```
-
-### End-to-End Testing
-```bash
-npm run test:e2e
-```
 
 ## 🚀 Deployment
 
