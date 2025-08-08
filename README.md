@@ -1,6 +1,6 @@
 # Marathon Management System 🏃‍♂️
 
-**Live Site:** [Marathon Management System](https://your-marathon-app.vercel.app)
+**Live Site:** [Marathon Management System](https://spectacular-zabaione-1b0341.netlify.app/)
 
 A comprehensive full-stack web application designed to streamline marathon event organization and participant management. This platform bridges the gap between event organizers and runners, providing an intuitive interface for creating, managing, and participating in marathon events.
 
