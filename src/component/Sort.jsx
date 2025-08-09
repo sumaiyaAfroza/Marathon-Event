@@ -9,8 +9,8 @@ const Sort = () => {
     useEffect(()=>{
       const fetchSortItem = async ()=>{
         try {
-          const response = await axios.get(`${import.meta.env.VITE_SERVER}/marathons?sort=-createdAt&limit=6`);
-          setItem(response?.data.slice(0,6))
+          const response = await axios.get(`${import.meta.env.VITE_SERVER}/marathons?sort=-createdAt&limit=8`);
+          setItem(response?.data.slice(0,8))
         } catch (error) {
           console.log(error)
         }
@@ -19,12 +19,26 @@ const Sort = () => {
     },[])
 
   return (
-    <div className='grid grid-cols-1 px-6 lg:grid-cols-3 gap-4'> 
+    <>
+
+      <div className="text-center space-y-4 mt-20">
+        <h1 className="font-bold text-blue-700 text-3xl "> Global Marathon Spectacular 2025</h1>
+        <p className="text-lg mb-10">
+          Join us for an unforgettable journey across stunning landscapes, from
+          city skylines to coastal shores, <br /> in this worldwide celebration of
+          running and community spirit.
+        </p>
+      </div>
+
+      <div className='grid grid-cols-1 px-6 lg:grid-cols-4 gap-4'> 
       {
         item.map(data => <SingleMarathon data={data}></SingleMarathon> )
       }
       
     </div>
+    
+    </>
+    
   )
 }
 

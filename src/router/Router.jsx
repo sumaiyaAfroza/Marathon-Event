@@ -18,6 +18,8 @@ import Sort from "../component/Sort";
 import UpdateApply from "../component/UpdateApply";
 import UpdateMarathon from "../component/UpdateMarathon";
 import Upcoming from "../component/Upcoming";
+import About from "../component/About";
+import Blogs from "../component/Blogs";
 
 
 export const router = createBrowserRouter([
@@ -45,6 +47,15 @@ export const router = createBrowserRouter([
             {
                 path:'/register',
                 Component: Register
+            },
+            {
+                path: '/about',
+                Component: About
+
+            },
+            {
+                path: '/blog',
+                Component: Blogs
             },
             {
                 path: '/marathons',
