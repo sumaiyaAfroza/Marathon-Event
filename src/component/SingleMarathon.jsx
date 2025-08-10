@@ -1,54 +1,80 @@
 import React from 'react'
 import { Link } from 'react-router'
-import Loading from './Loading'
+import { MapPin, Calendar, Clock, ArrowRight, Eye, Users, Award, FileText } from 'lucide-react'
 
-const SingleMarathon = ({data}) => {
-    console.log(data)
-    const {_id,image,location,title,endRegDate,startRegDate} = data
-      
+const SingleMarathon = ({ data }) => {
+  // Destructure data
+  const { _id, image, location, title, endRegDate, startRegDate, description } = data
+
   return (
-    <div>
-      
-        <div className="bg-white dark:bg-gray-700  rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      {/* Marathon Image */}
-      <div className="h-48 overflow-hidden">
-        <img
-          src={image}
-          alt=''
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      {/* Marathon Content */}
-      <div className="p-4 ">
-        <h3 className="text-xl font-bold dark:text-white text-gray-800 mb-2">{title}</h3>
-        
-        <div className="flex dark:text-white items-center text-gray-600 mb-2">
-          <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          <span>{location}</span>
+    <div className="group">
+  <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden flex flex-col h-full">
+        {/* Marathon Image with Overlay */}
+        <div className="h-48 overflow-hidden relative">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0"></div>
         </div>
 
-        <div className="space-y-2 mb-4">
-          <div className="flex items-center dark:text-white text-sm text-gray-500">
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span>Registration: {new Date(startRegDate).toLocaleDateString()} - {new Date(endRegDate).toLocaleDateString()}</span>
+        {/* Marathon Content */}
+  <div className="p-5 flex flex-col  space-y-2  items-start text-left">
+          {/* Title */}
+          <h3 className="text-2xl font-bold dark:text-white text-gray-800 mb-3">
+            {title}
+          </h3>
+
+          {/* Location */}
+          <div className="flex items-center dark:text-white text-gray-600">
+            <MapPin className="w-4 h-4 mr-2 text-red-500" />
+            <span className="font-medium text-xl">{location}</span>
           </div>
-        </div>
 
-        <Link to={`/marathon/${_id}`}
-          
-          className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors duration-300"
-        >
-          See Details
-        </Link>
+          {/* Description */}
+          <div className="text-gray-600 dark:text-gray-300 text-lg opacity-80 flex items-center">
+            <div className="flex justify-between items-center gap-3">
+              <FileText className="w-4 h-4 text-purple-500 flex-shrink-0" />
+              <span className='line-clamp-2'>{description}</span>
+            </div>
+          </div>
+
+          {/* Registration Dates */}
+          <div className="mb-2">
+            <div className="flex items-center dark:text-white text-[10px] text-gray-500 dark:bg-gray-600 p-3 rounded-lg justify-center">
+              <div className="flex items-center mr-2">
+                <Calendar className="w-4 h-4 mr-1 text-blue-500" />
+                {/* <Clock className="w-4 h-4 text-orange-500" /> */}
+              </div>
+              <div className="flex justify-center items-center gap-2">
+                <span className="text-lg text-gray-700 dark:text-gray-100">Registration:</span>
+                <span className="font-semibold darl:text-gray-100 text-sm">
+                  {new Date(startRegDate).toLocaleDateString()} - {new Date(endRegDate).toLocaleDateString()}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Section */}
+          {/* <div className="flex items-center justify-between mb-2 text-xs text-gray-500 dark:text-gray-400"> */}
+            <div className="flex items-center gap-1">
+              <Users className="w-4 h-4 text-green-500" />
+              <span>Join thousands</span>
+            </div>
+            
+          {/* </div> */}
+
+          {/* Button */}
+          <Link to={`/marathon/${_id}`} className='mt-6' >
+            <button className="w-full py-3 px-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg flex items-center justify-center gap-2">
+              <span>See More</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </Link>
+        </div>
       </div>
-    </div>
-      
     </div>
   )
 }

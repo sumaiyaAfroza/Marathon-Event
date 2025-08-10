@@ -7,6 +7,7 @@ import Extra from "../component/Extra";
 import ExtraSection from "../component/Extrasection";
 import { Helmet } from "react-helmet";
 
+
 const Home = () => {
 
   return (
@@ -16,7 +17,8 @@ const Home = () => {
       </Helmet>
       <Banner></Banner>
       
-      <Sort></Sort>
+      <Sort></Sort> 
+
       <Upcoming></Upcoming>
       <MarathonEvent></MarathonEvent>
       <Extra></Extra>
