@@ -32,8 +32,8 @@ const Upcoming = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold mb-6 text-center text-blue-700">Upcoming Marathons</h2>
+    <div className="max-w-6xl mx-auto px-4 mt-20 mb-10">
+      <h2 className="text-3xl font-bold mb-8 text-center text-blue-700">Upcoming Marathons</h2>
 
       {loading ? (
         <Loading />

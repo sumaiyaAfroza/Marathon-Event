@@ -5,18 +5,18 @@ import { MapPin, Trophy, Info, Clock, Moon, Key, Gift } from 'lucide-react';
 
 const MarathonEvent = () => {
   return (
-    <section className="bg-white dark:bg-gray-900 py-10">
+    <section className="bg-blue-100 dark:bg-gray-900 pb-10 pt-20">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <header className="mb-12 animate-fade-in">
           <div className="flex justify-center items-center mb-4">
-            <Moon className="w-12 h-12 text-blue-300 mr-4 animate-pulse" />
+            <Moon className="w-10 h-10 text-blue-700 mr-4 animate-pulse" />
             <h2 className="text-3xl font-bold text-blue-700 dark:text-white">Mysterious Night Run</h2>
-            <Moon className="w-12 h-12 text-blue-300 ml-4 animate-pulse" />
+            <Moon className="w-10 h-10 text-blue-700 ml-4 animate-pulse" />
           </div>
-          <div className="flex justify-center items-center text-gray-600 dark:text-gray-300">
+          {/* <div className="flex justify-center items-center text-gray-600 dark:text-gray-300">
             <Clock className="w-5 h-5 mr-2" />
             <p className="text-lg">June 22, 2025 - 10:15 AM</p>
-          </div>
+          </div> */}
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -85,12 +85,12 @@ const MarathonEvent = () => {
         </div>
 
         {/* Call to Action Button */}
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <button className="group relative px-8 py-4 bg-blue-600 rounded-full font-semibold text-lg text-white shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 overflow-hidden">
             <span className="relative z-10">Join the Mystery</span>
             <div className="absolute inset-0 bg-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </button>
-        </div>
+        </div> */}
       </div>
 
       <style jsx>{`

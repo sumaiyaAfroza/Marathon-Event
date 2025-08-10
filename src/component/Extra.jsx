@@ -5,9 +5,9 @@ import { FaRunning, FaMapMarkedAlt, FaUsers } from "react-icons/fa";
 
 const Extra = () => {
   return (
-    <section className="bg-white dark:bg-gray-900 py-10">
+    <section className="bg-white dark:bg-gray-900 py-20">
       <div className="max-w-6xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-6 text-blue-700 dark:text-white">Why Join Our Marathons?</h2>
+        <h2 className="text-3xl font-bold mb-7 text-blue-700 dark:text-white">Why Join Our Marathons?</h2>
         <div className="grid md:grid-cols-3 gap-6">
           <div className="p-6 border rounded-lg shadow bg-blue-50 dark:bg-gray-800">
             <FaRunning className="text-4xl mx-auto mb-4 text-blue-500" />

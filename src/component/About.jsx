@@ -239,9 +239,9 @@ const About = () => {
 
       {/* Enhanced Call to Action */}
       <div className="px-6 md:px-20 lg:px-32 pb-20">
-        <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 rounded-3xl p-12 text-center text-white shadow-2xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
-          <div className="relative z-10">
+        {/* <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 rounded-3xl p-12 text-center text-white shadow-2xl relative overflow-hidden"> */}
+          {/* <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div> */}
+          {/* <div className="relative z-10">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-6">
               <FaRunning className="text-2xl" />
             </div>
@@ -266,12 +266,12 @@ const About = () => {
                 <FaGlobe className="ml-2" />
               </a>
             </div>
-          </div>
+          </div> */}
           
           {/* Decorative elements */}
-          <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div>
-          <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/5 rounded-full animate-pulse delay-1000"></div>
-        </div>
+          {/* <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full animate-pulse"></div> */}
+          {/* <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/5 rounded-full animate-pulse delay-1000"></div> */}
+        {/* </div> */}
       </div>
       
     </div>
