@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router';
 
 const banners = [
     {
@@ -9,29 +10,27 @@ const banners = [
         alt: 'Marathon Event',
         title: 'Join Our Upcoming Marathon!',
         subtitle: 'Run for a cause. Connect, compete, and celebrate with the community.',
-        buttonText: 'Join Marathon'
-
-
-
-
+        buttonText: 'Join Marathon',
+        buttonLink: '/upcoming'
 
         
     },
-    {
-        id: 2,
-        image: 'https://i.ibb.co.com/8gyGmkrH/Getty-Images-892658004-dd95e506848d4aad9ab3f5f3129fe685.jpg',
-        alt: 'Found Wallet',
-        title: 'Every Step Counts',
-        subtitle: 'Train, track, and triumph in your own way. Whether it’s 5K or 42K, you’re a champion.',
-        buttonText: 'Start Training',
-    },
+    // {
+    //     id: 2,
+    //     image: 'https://i.ibb.co.com/8gyGmkrH/Getty-Images-892658004-dd95e506848d4aad9ab3f5f3129fe685.jpg',
+    //     alt: 'Found Wallet',
+    //     title: 'Every Step Counts',
+    //     subtitle: 'Train, track, and triumph in your own way. Whether it’s 5K or 42K, you’re a champion.',
+    //     buttonText: 'Start Training',
+    // },
     {
         id: 3,
         image: 'https://i.ibb.co.com/h1BRdPt6/last5.jpg',
         alt: 'Lost Pet',
         title: 'Finish Line Awaits',
         subtitle:  'Celebrate every mile with the community. Achieve your personal best and go beyond.',
-        buttonText: 'Explore Events'
+        buttonText: 'Explore Events',
+         buttonLink: '/marathons'
     },
     {
         id: 4,
@@ -39,7 +38,8 @@ const banners = [
         alt: 'Lost Keys',
         title: 'Run for a Cause',
         subtitle: 'Join our global marathon movement and support health, education, and community building.',
-        buttonText: 'join the Race'
+        buttonText: 'join the Race',
+         buttonLink: '/marathons'
     },
 ];
 
@@ -94,13 +94,12 @@ export default function Banner() {
                                 {banner.subtitle}
                             </p>
                             <div className="text-center">
-                                <button
-                                    className={`px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-full text-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105 ${
-                                        index === current ? 'animate-bounceIn' : ''
-                                    }`}
+                                <Link
+                                    to={banner.buttonLink}
+                                    className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full text-lg font-semibold shadow-lg"
                                 >
-                                    {banner.buttonText || 'Find Now'}
-                                </button>
+                                    {banner.buttonText}
+                                </Link>
                             </div>
                         </div>
                     </div>

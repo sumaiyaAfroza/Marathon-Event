@@ -1,6 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
+import Loading from "./Loading";
 
 const Upcoming = () => {
   const [marathons, setMarathons] = useState([]);
@@ -34,11 +36,11 @@ const Upcoming = () => {
       <h2 className="text-3xl font-bold mb-6 text-center text-blue-700">Upcoming Marathons</h2>
 
       {loading ? (
-        <p className="text-center text-gray-400">Loading...</p>
+        <Loading />
       ) : marathons.length === 0 ? (
         <p className="text-center text-gray-500">No upcoming marathons found.</p>
       ) : (
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4  gap-6">
           {marathons.map((marathon) => (
             <div
               key={marathon._id}

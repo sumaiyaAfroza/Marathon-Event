@@ -80,3 +80,4 @@ const SingleMarathon = ({ data }) => {
 }
 
 export default SingleMarathon
+

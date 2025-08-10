@@ -10,8 +10,10 @@ const Marathons = () => {
   const marathonData = useLoaderData();
   const [sortType, setSortType] = useState('default');
   const [sortedData, setSortedData] = useState(marathonData.data);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(!marathonData.data || marathonData.data.length === 0);
     let sorted = [...marathonData.data];
     if (sortType === 'oldest') {
       sorted.sort((a, b) => new Date(a.startRegDate) - new Date(b.startRegDate));
@@ -20,6 +22,16 @@ const Marathons = () => {
     }
     setSortedData(sortType === 'default' ? marathonData.data : sorted);
   }, [sortType, marathonData.data]);
+
+  useEffect(() => {
+    if (marathonData.data && marathonData.data.length > 0) {
+      setLoading(false);
+    }
+  }, [marathonData.data]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>

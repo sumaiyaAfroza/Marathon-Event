@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-blue-100 dark:bg-gray-900 shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <div className="max-w-screen-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         {/* Left: Logo */}
         <div className="flex-shrink-0">
           <NavLink to="/">
@@ -74,8 +74,8 @@ const Navbar = () => {
           )}
         </ul>
 
-        {/* Right: Theme & Auth */}
-        <div className="flex items-center gap-3">
+        {/* Right: Theme & Auth (hidden on mobile) */}
+        <div className="hidden md:flex items-center gap-3">
           {/* Theme Toggle */}
           <button onClick={toggleTheme} className="text-black dark:text-white px-2 py-1 rounded">
             {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
@@ -111,12 +111,12 @@ const Navbar = () => {
               </button>
             </div>
           )}
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu} className="bg-green-700 text-white rounded p-2 hover:bg-green-800">
-              {menuOpen ? <X size={26} /> : <Menu size={26} />}
-            </button>
-          </div>
+        </div>
+        {/* Mobile Menu Button (only on mobile) */}
+        <div className="md:hidden">
+          <button onClick={toggleMenu} className="bg-blue-400 text-white rounded p-2 hover:bg-green-800">
+            {menuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
         </div>
       </div>
 
@@ -170,7 +170,7 @@ const Navbar = () => {
               </li>
             )}
             <li>
-              <button onClick={toggleTheme} className="bg-green-700 text-white px-2 py-1 rounded hover:bg-green-800">
+              <button onClick={toggleTheme} className="bg-blue-700 text-white px-2 py-1 rounded hover:bg-green-800">
                 {theme === "light" ? "🌙 Dark" : "🌞 Light"}
               </button>
             </li>
