@@ -59,13 +59,7 @@ A comprehensive full-stack web application designed to streamline marathon event
 
 ### Installation Steps
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/your-username/marathon-management-system.git
-   cd marathon-management-system
-   ```
-
-2. **Backend Setup**
+1. **Backend Setup**
    ```bash
    cd server
    npm install
@@ -74,17 +68,7 @@ A comprehensive full-stack web application designed to streamline marathon event
    cp .env.example .env
    ```
    
-   Configure your `.env` file:
-   ```env
-   PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/marathon_db
-   # or for Atlas: mongodb+srv://username:password@cluster.mongodb.net/marathon_db
-   JWT_SECRET=your_super_secret_jwt_key_here
-   JWT_EXPIRES_IN=7d
-   NODE_ENV=development
-   ```
-
-3. **Frontend Setup**
+2. **Frontend Setup**
    ```bash
    cd ../client
    npm install
@@ -93,18 +77,8 @@ A comprehensive full-stack web application designed to streamline marathon event
    cp .env.example .env
    ```
    
-   Configure your `.env` file:
-   ```env
-   VITE_API_URL=http://localhost:5000/api
-   VITE_FIREBASE_API_KEY=your_firebase_api_key
-   VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-   VITE_FIREBASE_PROJECT_ID=your_project_id
-   VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-   VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-   VITE_FIREBASE_APP_ID=your_app_id
-   ```
-
-4. **Start Development Servers**
+   
+3. **Start Development Servers**
    
    Backend (Terminal 1):
    ```bash
@@ -164,20 +138,6 @@ A comprehensive full-stack web application designed to streamline marathon event
 - Environment variable protection for sensitive data
 - Helmet.js for security headers
 
-## 📊 Database Schema
-
-### User Model
-```javascript
-{
-  uid: String (Firebase UID),
-  name: String,
-  email: String,
-  photoURL: String,
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
 
 
 ## 🚀 Deployment
@@ -227,38 +187,13 @@ We welcome contributions! Please follow these steps:
 - Use conventional commit messages
 - Ensure responsive design compliance
 
-## 📝 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Firebase for authentication services
-- MongoDB for flexible database solutions
-- React community for excellent documentation
-- Tailwind CSS for utility-first styling
-- All contributors who made this project possible
 
 ## 📞 Support & Contact
 
-**Developer**: [Your Name]
-- **GitHub**: [@your-username](https://github.com/your-username)
-- **LinkedIn**: [Your Profile](https://linkedin.com/in/your-profile)
-- **Email**: your.email@example.com
-- **Portfolio**: [your-portfolio.com](https://your-portfolio.com)
+**Developer**: Sumaiya Afroza
+- **Email**: sumaiya.afroza.99@gmail.com
 
-For bug reports and feature requests, please use the [GitHub Issues](https://github.com/your-username/marathon-management-system/issues) page.
-
----
-
-## 📊 Project Statistics
-
-- **Total Lines of Code**: 15,000+
-- **Frontend Components**: 25+
-- **API Endpoints**: 15+
-- **Database Collections**: 3
-- **Test Coverage**: 85%+
-- **Performance Score**: 95+ (Lighthouse)
 
 ⭐ **If you find this project helpful, please consider giving it a star on GitHub!**
 
