@@ -39,7 +39,7 @@ A comprehensive full-stack web application designed to streamline marathon event
 - Express Validator for input validation
 - CORS for cross-origin requests
 - Helmet for security headers
-- Express Rate Limit for API protection
+- Express Rate Limit for API protection 
 
 **Development & Deployment:**
 - Vite for fast development and building
@@ -47,6 +47,7 @@ A comprehensive full-stack web application designed to streamline marathon event
 - Vercel/Netlify for frontend deployment
 - Railway/Render for backend hosting
 - MongoDB Atlas for cloud database
+
 
 ## 🚀 Getting Started
 

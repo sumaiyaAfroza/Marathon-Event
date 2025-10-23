@@ -10,7 +10,7 @@ const MarathonEvent = () => {
         <header className="mb-12 animate-fade-in">
           <div className="flex justify-center items-center mb-4">
             <Moon className="w-10 h-10 text-blue-700 mr-4 animate-pulse" />
-            <h2 className="text-3xl font-bold text-blue-700 dark:text-white">Mysterious Night Run</h2>
+            <h2 className="text-3xl font-bold text-blue-700 dark:text-white">Mysterious Night Run</h2>+
             <Moon className="w-10 h-10 text-blue-700 ml-4 animate-pulse" />
           </div>
           {/* <div className="flex justify-center items-center text-gray-600 dark:text-gray-300">

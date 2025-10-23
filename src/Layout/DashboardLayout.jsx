@@ -3,6 +3,8 @@ import { NavLink, Outlet } from "react-router";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
 import { ThemeContext } from "../Context/Theme";
+ 
+import { User } from "lucide-react"; // import at the top
 
 
 
@@ -22,7 +24,29 @@ const DashboardLayout = () => {
           <div className="p-4 md:p-6 text-center border-b border-blue-700">
             <h2 className="text-xl md:text-2xl text-blue-700 dark:text-white font-bold tracking-wide">Marathon Events</h2>
           </div>
+
+
+
           <nav className="flex md:flex-col flex-row flex-wrap justify-center md:justify-start dark:text-white gap-2 md:p-4 p-2">
+          
+
+<NavLink
+  to="/dashboard/profile"
+  className={({ isActive }) =>
+    `flex items-center gap-2 px-3 md:px-4 text-base md:text-lg py-2 rounded-md transition-all ${
+      isActive
+        ? "bg-blue-600 font-semibold text-white"
+        : "hover:bg-blue-400 hover:text-black dark:hover:text-white"
+    }`
+  }
+>
+  <User className="w-5 h-5" />
+  <span>Profile</span>
+</NavLink>
+
+           
+           
+           
             <NavLink
               to="/dashboard/add-marathon"
               className={({ isActive }) =>
@@ -60,6 +84,11 @@ const DashboardLayout = () => {
               📝 My Apply List
             </NavLink>
           </nav>
+
+
+
+
+
         </aside>
 
         {/* Main Content Area */}

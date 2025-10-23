@@ -20,6 +20,7 @@ import UpdateMarathon from "../component/UpdateMarathon";
 import Upcoming from "../component/Upcoming";
 import About from "../component/About";
 import Blogs from "../component/Blogs";
+import Profile from "../component/Profile";
 
 
 export const router = createBrowserRouter([
@@ -86,6 +87,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Dashboard />
+            },
+            {
+                path:'/dashboard/profile',
+                Component: Profile
             },
            
             {
