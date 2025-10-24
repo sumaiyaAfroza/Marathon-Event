@@ -1,217 +1,182 @@
-import React, { useState, useEffect } from 'react';
-import { Calendar, TrendingUp, Users, MapPin, Clock, Award, Activity } from 'lucide-react';
+import React, { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../Context/AuthProvider";
+import { Loader2, Activity, BarChart3, Users, Calendar } from "lucide-react";
 
 const Dashboard = () => {
-  const [stats, setStats] = useState({
-    totalMarathons: 0,
-    myMarathons: 0,
-    myRegistrations: 0,
-    upcomingEvents: 0
-  });
-  
-  const [recentActivity, setRecentActivity] = useState([]);
+  const { user } = useContext(AuthContext);
+  const [stats, setStats] = useState(null);
+  const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchDashboardData();
-  }, []);
-
-  const fetchDashboardData = async () => {
-    try {
-      // Replace with your actual API endpoint
-      const token = localStorage.getItem('token');
-      
-      // Fetch statistics
-      const statsRes = await fetch('http://localhost:5000/api/dashboard/stats', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      const statsData = await statsRes.json();
-      setStats(statsData);
-
-      // Fetch recent activity
-      const activityRes = await fetch('http://localhost:5000/api/dashboard/recent-activity', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      const activityData = await activityRes.json();
-      setRecentActivity(activityData);
-
+    if (!user?.email) {
       setLoading(false);
-    } catch (error) {
-      console.error('Error fetching dashboard data:', error);
-      setLoading(false);
+      setError("User email not found");
+      return;
     }
-  };
+
+    const fetchData = async () => {
+      try {
+        console.log("Fetching dashboard data for:", user.email);
+        
+        const [statsRes, activityRes] = await Promise.all([
+          fetch(`http://localhost:3000/api/dashboard/stats?email=${user.email}`),
+          fetch(`http://localhost:3000/api/dashboard/recent-activity?email=${user.email}`),
+        ]);
+
+        console.log("Stats Response Status:", statsRes.status);
+        console.log("Activity Response Status:", activityRes.status);
+
+        if (!statsRes.ok || !activityRes.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const statsData = await statsRes.json();
+        const activityData = await activityRes.json();
+
+        console.log("Stats Data:", statsData);
+        console.log("Activity Data:", activityData);
+
+        setStats(statsData);
+        setActivities(activityData);
+        setError(null);
+      } catch (error) {
+        console.error("Error loading dashboard:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [user?.email]);
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-96">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+      <div className="flex justify-center items-center h-[70vh]">
+        <Loader2 className="w-10 h-10 text-blue-500 animate-spin" />
+        <p className="ml-3 text-lg font-medium">Loading Dashboard...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center mt-20">
+        <p className="text-red-600 font-semibold text-xl mb-4">
+          Failed to load dashboard data
+        </p>
+        <p className="text-gray-600">{error}</p>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+
+  if (!stats) {
+    return (
+      <div className="text-center mt-20 text-red-600 font-semibold">
+        No dashboard data available.
       </div>
     );
   }
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white">
-        <h1 className="text-3xl font-bold mb-2">Welcome to your Dashboard</h1>
-        <p className="text-blue-100">Use the sidebar to navigate through the options.</p>
-      </div>
+    <div className="p-6 space-y-8">
+      {/* Heading */}
+      <h1 className="text-3xl font-bold text-gray-800">🏃‍♀️ Dashboard Overview</h1>
 
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard
-          icon={<Calendar className="w-8 h-8" />}
-          title="Total Marathons"
-          value={stats.totalMarathons}
-          color="bg-blue-500"
-          trend="+12%"
-        />
-        <StatCard
-          icon={<Award className="w-8 h-8" />}
-          title="My Marathons"
-          value={stats.myMarathons}
-          color="bg-green-500"
-          trend="+5%"
-        />
-        <StatCard
-          icon={<Users className="w-8 h-8" />}
-          title="My Registrations"
-          value={stats.myRegistrations}
-          color="bg-purple-500"
-          trend="+8%"
-        />
-        <StatCard
-          icon={<TrendingUp className="w-8 h-8" />}
-          title="Upcoming Events"
-          value={stats.upcomingEvents}
-          color="bg-orange-500"
-          trend="+3%"
-        />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Recent Activity Feed */}
-        <div className="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Activity className="w-6 h-6 text-blue-600" />
-            <h2 className="text-xl font-bold text-gray-800">Recent Activity</h2>
+      {/* Stats Cards */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Total Marathons */}
+        <div className="bg-white rounded-lg shadow-lg p-6 flex justify-between items-center border border-gray-200 hover:shadow-xl transition">
+          <div>
+            <h2 className="text-gray-600 text-lg">Total Marathons</h2>
+            <p className="text-3xl font-bold text-blue-600">
+              {stats.totalMarathons || 0}
+            </p>
           </div>
-          <div className="space-y-4">
-            {recentActivity.length > 0 ? (
-              recentActivity.map((activity, index) => (
-                <ActivityItem key={index} activity={activity} />
-              ))
-            ) : (
-              <p className="text-gray-500 text-center py-8">No recent activity</p>
-            )}
-          </div>
+          <BarChart3 className="w-10 h-10 text-blue-400" />
         </div>
 
-        {/* Quick Actions Panel */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">Quick Actions</h2>
-          <div className="space-y-3">
-            <QuickActionButton
-              icon={<Calendar className="w-5 h-5" />}
-              text="Create Marathon"
-              color="bg-blue-500 hover:bg-blue-600"
-              onClick={() => window.location.href = '/dashboard/add-marathon'}
-            />
-            <QuickActionButton
-              icon={<MapPin className="w-5 h-5" />}
-              text="Browse Marathons"
-              color="bg-green-500 hover:bg-green-600"
-              onClick={() => window.location.href = '/marathons'}
-            />
-            <QuickActionButton
-              icon={<Users className="w-5 h-5" />}
-              text="My Registrations"
-              color="bg-purple-500 hover:bg-purple-600"
-              onClick={() => window.location.href = '/dashboard/my-apply-list'}
-            />
-            <QuickActionButton
-              icon={<Award className="w-5 h-5" />}
-              text="My Marathons"
-              color="bg-orange-500 hover:bg-orange-600"
-              onClick={() => window.location.href = '/dashboard/my-marathon-list'}
-            />
+        {/* My Created Marathons */}
+        <div className="bg-white rounded-lg shadow-lg p-6 flex justify-between items-center border border-gray-200 hover:shadow-xl transition">
+          <div>
+            <h2 className="text-gray-600 text-lg">My Created Marathons</h2>
+            <p className="text-3xl font-bold text-green-600">
+              {stats.myMarathons || 0}
+            </p>
           </div>
+          <Activity className="w-10 h-10 text-green-400" />
+        </div>
 
-          {/* Upcoming Marathon Preview */}
-          <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
-            <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
-              <Clock className="w-4 h-4" />
-              Next Marathon
-            </h3>
-            <p className="text-sm text-gray-600">Dhaka City Marathon</p>
-            <p className="text-xs text-gray-500 mt-1">Starting in 15 days</p>
+        {/* My Registrations */}
+        <div className="bg-white rounded-lg shadow-lg p-6 flex justify-between items-center border border-gray-200 hover:shadow-xl transition">
+          <div>
+            <h2 className="text-gray-600 text-lg">My Registrations</h2>
+            <p className="text-3xl font-bold text-purple-600">
+              {stats.myRegistrations || 0}
+            </p>
           </div>
+          <Users className="w-10 h-10 text-purple-400" />
+        </div>
+
+        {/* Upcoming Events */}
+        <div className="bg-white rounded-lg shadow-lg p-6 flex justify-between items-center border border-gray-200 hover:shadow-xl transition">
+          <div>
+            <h2 className="text-gray-600 text-lg">Upcoming Events</h2>
+            <p className="text-3xl font-bold text-orange-600">
+              {stats.upcomingEvents || 0}
+            </p>
+          </div>
+          <Calendar className="w-10 h-10 text-orange-400" />
         </div>
       </div>
-    </div>
-  );
-};
 
-// Stat Card Component
-const StatCard = ({ icon, title, value, color, trend }) => (
-  <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
-    <div className="flex items-center justify-between">
+      {/* Recent Activity */}
       <div>
-        <p className="text-gray-500 text-sm font-medium">{title}</p>
-        <p className="text-3xl font-bold text-gray-800 mt-2">{value}</p>
-        <p className="text-green-500 text-sm mt-1 font-semibold">{trend} from last month</p>
-      </div>
-      <div className={`${color} text-white p-3 rounded-full`}>
-        {icon}
-      </div>
-    </div>
-  </div>
-);
-
-// Activity Item Component
-const ActivityItem = ({ activity }) => {
-  const getActivityIcon = (type) => {
-    switch (type) {
-      case 'registration':
-        return <Users className="w-5 h-5 text-green-500" />;
-      case 'creation':
-        return <Calendar className="w-5 h-5 text-blue-500" />;
-      case 'update':
-        return <TrendingUp className="w-5 h-5 text-orange-500" />;
-      default:
-        return <Activity className="w-5 h-5 text-gray-500" />;
-    }
-  };
-
-  return (
-    <div className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
-      <div className="mt-1">{getActivityIcon(activity.type)}</div>
-      <div className="flex-1">
-        <p className="text-gray-800 font-medium">{activity.title}</p>
-        <p className="text-sm text-gray-500">{activity.description}</p>
-        <p className="text-xs text-gray-400 mt-1">{activity.time}</p>
+        <h2 className="text-2xl font-semibold mb-4 text-gray-800">🕒 Recent Activity</h2>
+        {!activities || activities.length === 0 ? (
+          <div className="bg-white rounded-lg shadow border border-gray-200 p-8 text-center">
+            <p className="text-gray-500">No recent activities found.</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {activities.map((activity, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-lg shadow border border-gray-200 p-4 hover:bg-gray-50 transition"
+              >
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h3 className="font-semibold text-gray-800">
+                      {activity.title || "Activity"}
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      {activity.description || "No description"}
+                    </p>
+                  </div>
+                  <span className="text-xs text-gray-500">
+                    {activity.time || "Recently"}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 };
-
-// Quick Action Button Component
-const QuickActionButton = ({ icon, text, color, onClick }) => (
-  <button
-    onClick={onClick}
-    className={`w-full ${color} text-white py-3 px-4 rounded-lg flex items-center gap-3 transition-all transform hover:scale-105 shadow-md`}
-  >
-    {icon}
-    <span className="font-medium">{text}</span>
-  </button>
-);
 
 export default Dashboard;
+
+
 
 
 

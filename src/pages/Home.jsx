@@ -6,6 +6,7 @@ import Upcoming from "../component/Upcoming";
 import Extra from "../component/Extra";
 import ExtraSection from "../component/Extrasection";
 import { Helmet } from "react-helmet";
+import FAQ from "../component/FAQ";
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
 
       <Upcoming></Upcoming>
       <MarathonEvent></MarathonEvent>
+      <FAQ></FAQ>
       <Extra></Extra>
       <ExtraSection></ExtraSection>
     </div>
