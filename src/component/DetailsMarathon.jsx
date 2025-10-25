@@ -108,7 +108,7 @@ const DetailsMarathon = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        setReviews([data, ...reviews]);
+        setReviews([reviewData, ...reviews]);
         setRating(0);
         setComment("");
       } else {
@@ -344,22 +344,8 @@ const DetailsMarathon = () => {
                     delete
                     </button>
               
-                {/* <button
-                  onClick={() => handleDelete(rev._id)}
-                  disabled={loading === rev._id}
-                  className={`absolute top-3 right-3 px-2 py-1 text-xs font-semibold rounded 
-                    ${loading === rev._id
-                      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                      : "bg-red-100 text-red-600 hover:bg-red-200"
-                    }`}
-                >
-                 btn
-                </button> */}
-            
-
-
-
-
+              
+      
                 </div>
               ))
             )}
