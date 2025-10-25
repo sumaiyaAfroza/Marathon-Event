@@ -130,7 +130,7 @@ const DetailsMarathon = () => {
 
     try {
       setLoading(id);
-      const res = await fetch(`http://localhost:3000/reviews/${id}`, {
+      const res = await fetch(`https://marathon-event-server.vercel.app/reviews/${id}`, {
         method: "DELETE",
       });
 
