@@ -124,9 +124,9 @@ const Profile = () => {
       },
       body: JSON.stringify({
         name: tempProfile.name,
-        phone: tempProfile.phone,
-        location: tempProfile.location,
-        bio: tempProfile.bio,
+        // phone: tempProfile.phone,
+        // location: tempProfile.location,
+        // bio: tempProfile.bio,
         preferredDistance: tempProfile.preferredDistance,
         photoURL: tempProfile.photo
       })
@@ -317,7 +317,7 @@ const Profile = () => {
           </div>
 
           {/* Phone */}
-          <div>
+          {/* <div>
             <label className="flex items-center gap-2 text-gray-700 font-medium mb-2">
               <Phone className="w-5 h-5 text-blue-500" />
               Phone Number
@@ -334,10 +334,10 @@ const Profile = () => {
             ) : (
               <p className="text-gray-800 px-4 py-2 bg-gray-50 rounded-lg">{profile.phone || 'Not provided'}</p>
             )}
-          </div>
+          </div> */}
 
           {/* Location */}
-          <div>
+          {/* <div>
             <label className="flex items-center gap-2 text-gray-700 font-medium mb-2">
               <MapPin className="w-5 h-5 text-blue-500" />
               Location
@@ -354,10 +354,10 @@ const Profile = () => {
             ) : (
               <p className="text-gray-800 px-4 py-2 bg-gray-50 rounded-lg">{profile.location || 'Not provided'}</p>
             )}
-          </div>
+          </div> */}
 
           {/* Bio */}
-          <div>
+          {/* <div>
             <label className="text-gray-700 font-medium mb-2 block">
               Bio
             </label>
@@ -373,7 +373,7 @@ const Profile = () => {
             ) : (
               <p className="text-gray-800 px-4 py-2 bg-gray-50 rounded-lg">{profile.bio || 'No bio added'}</p>
             )}
-          </div>
+          </div> */}
 
           {/* Preferred Distance */}
           <div>
