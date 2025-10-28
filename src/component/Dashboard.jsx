@@ -21,8 +21,8 @@ const Dashboard = () => {
         console.log("Fetching dashboard data for:", user.email);
         
         const [statsRes, activityRes] = await Promise.all([
-          fetch(`https://marathon-event-server-uolk.vercel.app/api/dashboard/stats?email=${user.email}`),
-          fetch(`https://marathon-event-server-uolk.vercel.app/api/dashboard/recent-activity?email=${user.email}`),
+          fetch(`http://localhost:3000/api/dashboard/stats?email=${user.email}`),
+          fetch(`http://localhost:3000/api/dashboard/recent-activity?email=${user.email}`),
         ]);
 
         console.log("Stats Response Status:", statsRes.status);

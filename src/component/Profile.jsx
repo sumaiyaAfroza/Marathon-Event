@@ -37,7 +37,7 @@ const Profile = () => {
 
   const fetchProfile = async () => {
     try {
-      const res = await fetch(`https://marathon-event-server-uolk.vercel.app/profile/${user.email}`);
+      const res = await fetch(`http://localhost:3000/profile/${user.email}`);
       const data = await res.json();
       
       if (res.ok) {
@@ -74,7 +74,7 @@ const Profile = () => {
 
   const fetchStatistics = async () => {
     try {
-      const res = await fetch(`https://marathon-event-server-uolk.vercel.app/profile/${user.email}/statistics`);
+      const res = await fetch(`http://localhost:3000/profile/${user.email}/statistics`);
       const data = await res.json();
       
       if (res.ok) {
@@ -87,7 +87,7 @@ const Profile = () => {
 
   const fetchAchievements = async () => {
     try {
-      const res = await fetch(`https://marathon-event-server-uolk.vercel.app/profile/${user.email}/achievements`);
+      const res = await fetch(`http://localhost:3000/profile/${user.email}/achievements`);
       const data = await res.json();
       
       if (res.ok) {
@@ -117,7 +117,7 @@ const Profile = () => {
   setSaving(true);
   
   try {
-    const res = await fetch(`https://marathon-event-server-uolk.vercel.app/profile/${user.email}`, {
+    const res = await fetch(`http://localhost:3000/profile/${user.email}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -167,7 +167,7 @@ const Profile = () => {
 
 //     setSaving(true);
 //     try {
-//       const res = await fetch(`https://marathon-event-server-uolk.vercel.app/profile/${user.email}`, {
+//       const res = await fetch(`http://localhost:3000/profile/${user.email}`, {
 //         method: 'PUT',
 //         headers: {
 //           'Content-Type': 'application/json'
@@ -480,7 +480,7 @@ export default Profile;
 //   const fetchProfile = async () => {
 //     try {
 //       const token = localStorage.getItem('token');
-//       const res = await fetch('https://marathon-event-server-uolk.vercel.app/profile', {
+//       const res = await fetch('http://localhost:3000/profile', {
 //         headers: {
 //           'Authorization': `Bearer ${token}`
 //         }
@@ -507,7 +507,7 @@ export default Profile;
 //     setLoading(true);
 //     try {
 //       const token = localStorage.getItem('token');
-//       const res = await fetch('https://marathon-event-server-uolk.vercel.app/profile', {
+//       const res = await fetch('http://localhost:3000/profile', {
 //         method: 'PUT',
 //         headers: {
 //           'Content-Type': 'application/json',

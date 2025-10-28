@@ -9,7 +9,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   // ✅ Backend URL
-  const backendURL = "https://marathon-event-server-uolk.vercel.app";
+  const backendURL = "http://localhost:3000";
 
   // ⛏️ Function to save user to backend
   const saveUserToDB = async (userData) => {
